@@ -12,6 +12,7 @@
 		7C2022922A0288C800D2E623 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C2022912A0288C800D2E623 /* Assets.xcassets */; };
 		7C2022952A0288C800D2E623 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C2022932A0288C800D2E623 /* LaunchScreen.storyboard */; };
 		7C5ABFCD2A037539005C1017 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5ABFCC2A037539005C1017 /* MainViewController.swift */; };
+		7C5ABFD12A0383F0005C1017 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5ABFD02A0383F0005C1017 /* UIColor+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7C2022942A0288C800D2E623 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C2022962A0288C800D2E623 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C5ABFCC2A037539005C1017 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7C5ABFD02A0383F0005C1017 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		7C2022872A0288C700D2E623 /* WeightMonitor */ = {
 			isa = PBXGroup;
 			children = (
+				7C5ABFCE2A038396005C1017 /* Utils */,
 				7C5ABFCA2A0374C5005C1017 /* Scenes */,
 				7C20229D2A028DE100D2E623 /* Application */,
 				7C20229C2A028DD100D2E623 /* Resources */,
@@ -94,6 +97,22 @@
 				7C5ABFCC2A037539005C1017 /* MainViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		7C5ABFCE2A038396005C1017 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7C5ABFCF2A0383A1005C1017 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7C5ABFCF2A0383A1005C1017 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7C5ABFD02A0383F0005C1017 /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +188,7 @@
 				7C2022892A0288C700D2E623 /* AppDelegate.swift in Sources */,
 				7C20228B2A0288C700D2E623 /* SceneDelegate.swift in Sources */,
 				7C5ABFCD2A037539005C1017 /* MainViewController.swift in Sources */,
+				7C5ABFD12A0383F0005C1017 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
