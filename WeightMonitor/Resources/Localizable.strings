@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  WeightMonitor
+
+  Created by Filosuf on 04.05.2023.
+  
+*/
+
+//MARK: - MainViewController
+weightMonitor = "Монитор веса";
+currentWeight = "Текущий вес";
+metricSystem = "Метрическая система";
+history = "История";
