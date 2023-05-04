@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let dataStoreFactory = DataStoreFactory(dataStore: dataStore)
 //        let mainCoordinator: MainCoordinator = MainCoordinatorImp(controllersFactory: controllersFactory, dataStoreFactory: dataStoreFactory)
 
-        window?.rootViewController = ViewController()
+        window?.rootViewController = MainViewController()
         window?.makeKeyAndVisible()
     }
 
