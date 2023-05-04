@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrentWeightView: UIView {
+final class CurrentWeightView: UIView {
 
     // MARK: - Properties
     var metricSystemChange: ((Bool) -> Void)?

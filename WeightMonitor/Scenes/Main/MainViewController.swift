@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
 
     // MARK: - Properties
     private let weightMonitorTitle: UILabel = {
@@ -26,6 +26,18 @@ class MainViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         label.textColor = .Custom.black
         return label
+    }()
+
+    private let historyHeader = HistoryHeaderView()
+
+    private lazy var historyTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(HistoryTableViewCell.self, forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        tableView.layer.cornerRadius = 16
+        tableView.clipsToBounds = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
     }()
 
     // MARK: - Initialiser
@@ -50,8 +62,10 @@ class MainViewController: UIViewController {
 
     private func layout() {
         [weightMonitorTitle,
-        currentWeightView,
-        historyTitle,
+         currentWeightView,
+         historyTitle,
+         historyHeader,
+         historyTableView
         ].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(view)
@@ -71,6 +85,41 @@ class MainViewController: UIViewController {
             historyTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             historyTitle.heightAnchor.constraint(equalToConstant: 24),
 
+            historyHeader.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            historyHeader.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            historyHeader.topAnchor.constraint(equalTo: historyTitle.bottomAnchor, constant: 8),
+            historyHeader.heightAnchor.constraint(equalToConstant: 35),
+
+            historyTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            historyTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            historyTableView.topAnchor.constraint(equalTo: historyHeader.bottomAnchor),
+            historyTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        presenter.friends.count
+        10
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as! HistoryTableViewCell
+        cell.setupCell()
+        return cell
+    }
+
+}
+
+// MARK: - UITableViewDelegate
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 46
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        presenter.didSelectRow(index: indexPath)
     }
 }

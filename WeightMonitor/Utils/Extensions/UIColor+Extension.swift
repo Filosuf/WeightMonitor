@@ -16,5 +16,6 @@ extension UIColor {
         static var grayText: UIColor? { UIColor(named: "grayText") }
         static var lightGrayText: UIColor? { UIColor(named: "lightGrayText") }
         static var whiteTextTost: UIColor? { UIColor(named: "whiteTextTost") }
+        static var divider: UIColor? { UIColor(named: "divider") }
     }
 }

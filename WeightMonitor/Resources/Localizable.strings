@@ -11,3 +11,7 @@ weightMonitor = "Монитор веса";
 currentWeight = "Текущий вес";
 metricSystem = "Метрическая система";
 history = "История";
+
+weight = "Вес";
+changes = "Изменения";
+date = "Дата";
