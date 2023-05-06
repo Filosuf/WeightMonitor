@@ -16,13 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-//        let settingsStorage = SettingsStorage()
-//        let dataStore = TrackersRepository()
-//        let controllersFactory = ViewControllersFactory()
-//        let dataStoreFactory = DataStoreFactory(dataStore: dataStore)
-//        let mainCoordinator: MainCoordinator = MainCoordinatorImp(controllersFactory: controllersFactory, dataStoreFactory: dataStoreFactory)
-
-        window?.rootViewController = MainViewController()
+        let controllersFactory = ViewControllersFactory()
+        let settingsStorage = SettingsStorageService()
+        let mainCoordinator = MainCoordinator(controllersFactory: controllersFactory, settingsStorage: settingsStorage)
+        window?.rootViewController = mainCoordinator.startApplication()
         window?.makeKeyAndVisible()
     }
 
