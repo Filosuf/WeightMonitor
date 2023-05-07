@@ -8,7 +8,8 @@
 import Foundation
 
 protocol SettingsStorageProtocol {
-    var metricSystemIsOn: Bool { get set }
+    func saveMetricSystem(isOn: Bool)
+    func fetchMetricSystem() -> Bool
 }
 
 final class SettingsStorageService: SettingsStorageProtocol {
@@ -17,12 +18,11 @@ final class SettingsStorageService: SettingsStorageProtocol {
     private let storage = UserDefaults.standard
     private let metricSystemKey = "metricSystem"
 
-    var metricSystemIsOn: Bool {
-        get {
-            storage.bool(forKey: metricSystemKey)
-        }
-        set {
-            storage.set(newValue, forKey: metricSystemKey)
-        }
+    func saveMetricSystem(isOn: Bool) {
+        storage.set(isOn, forKey: metricSystemKey)
+    }
+
+    func fetchMetricSystem() -> Bool {
+        storage.bool(forKey: metricSystemKey)
     }
 }

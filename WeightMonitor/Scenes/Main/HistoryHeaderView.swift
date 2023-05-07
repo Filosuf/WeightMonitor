@@ -34,13 +34,6 @@ final class HistoryHeaderView: UIView {
         return label
     }()
 
-//    private let arrowImage: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(systemName: "chevron.right")
-//        imageView.tintColor = .Custom.black
-//        return imageView
-//    }()
-
     private let dividerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .Custom.divider

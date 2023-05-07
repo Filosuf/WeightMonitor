@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>pounds</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@VARIABLE@</string>
+		<key>VARIABLE</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>f</string>
+			<key>one</key>
+			<string>%.1f фунт</string>
+			<key>few</key>
+			<string>%.1f фунтов</string>
+			<key>many</key>
+			<string>%.1f фунтов</string>
+			<key>other</key>
+			<string>%.1f фунта</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

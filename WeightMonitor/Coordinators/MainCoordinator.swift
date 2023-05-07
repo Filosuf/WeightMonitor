@@ -13,8 +13,6 @@ final class MainCoordinator {
     private var navCon: UINavigationController?
     private let controllersFactory: ViewControllersFactory
     private let settingsStorage: SettingsStorageProtocol
-//    private let newNavCon = UINavigationController()
-//    private lazy var settingsFlowCoordinator = SettingsFlowCoordinator(navCon: newNavCon, controllersFactory: controllersFactory, dataStoreFactory: dataStoreFactory)
 
     //MARK: - Initialiser
     init(controllersFactory: ViewControllersFactory, settingsStorage: SettingsStorageProtocol) {
@@ -26,6 +24,7 @@ final class MainCoordinator {
     func startApplication() -> UIViewController {
         let vc = controllersFactory.makeMainViewController(coordinator: self, settingsStorageService: settingsStorage)
         navCon = UINavigationController(rootViewController: vc)
+        navCon?.isNavigationBarHidden = true
         return navCon!
     }
 

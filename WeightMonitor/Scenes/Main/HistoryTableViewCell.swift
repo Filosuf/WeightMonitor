@@ -52,10 +52,10 @@ final class HistoryTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupCell() {
-        weightLabel.text = "55 kg"
-        changesLabel.text = "+0.5"
-        dateLabel.text = "12.02.23"
+    func setupCell(with model: HistoryCellModel) {
+        weightLabel.text = model.weight
+        changesLabel.text = model.change
+        dateLabel.text = model.date
     }
 
     private func layout() {

@@ -10,7 +10,8 @@ import Foundation
 final class ViewControllersFactory {
 
     func makeMainViewController(coordinator: MainCoordinator, settingsStorageService: SettingsStorageProtocol) -> MainViewController {
-        let viewController = MainViewController(coordinator: coordinator)
+        let viewModel = MainViewModelImpl(coordinator: coordinator, settingsStorage: settingsStorageService)
+        let viewController = MainViewController(viewModel: viewModel)
         return viewController
     }
 

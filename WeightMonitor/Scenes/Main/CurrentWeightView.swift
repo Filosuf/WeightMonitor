@@ -58,31 +58,35 @@ final class CurrentWeightView: UIView {
     }()
 
     // MARK: - Initialiser
-       init() {
-           super.init(frame: CGRect.zero)
-           backgroundColor = .Custom.grayBackground
-           layout()
-           layer.cornerRadius = 12
-           layer.masksToBounds = true
-       }
+    init() {
+        super.init(frame: CGRect.zero)
+        backgroundColor = .Custom.grayBackground
+        layout()
+        layer.cornerRadius = 12
+        layer.masksToBounds = true
+    }
 
-       required init?(coder aDecoder: NSCoder)
-       {
-           fatalError("init(coder:) has not been implemented")
-       }
+    required init?(coder aDecoder: NSCoder)
+    {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     // MARK: - Methods
-   @objc private func switchHandle() {
-       metricSystemChange?(metricSystemSwitch.isOn)
+    func updateMetricSystemSwitch(isOn: Bool) {
+        metricSystemSwitch.isOn = isOn
+    }
+
+    @objc private func switchHandle() {
+        metricSystemChange?(metricSystemSwitch.isOn)
     }
 
     private func layout() {
         [scalesImage,
-        currentWeightTitle,
-        currentWeightValueLabel,
-        changingCurrentWeightLabel,
-        metricSystemSwitch,
-        metricSystemLabel
+         currentWeightTitle,
+         currentWeightValueLabel,
+         changingCurrentWeightLabel,
+         metricSystemSwitch,
+         metricSystemLabel
         ].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
             self.addSubview(view)

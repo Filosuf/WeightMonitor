@@ -10,7 +10,7 @@ import UIKit
 final class MainViewController: UIViewController {
 
     // MARK: - Properties
-    private let coordinator: MainCoordinator
+    private var viewModel: MainViewModel
 
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -55,8 +55,8 @@ final class MainViewController: UIViewController {
     }()
 
     // MARK: - Initialiser
-    init(coordinator: MainCoordinator) {
-        self.coordinator = coordinator
+    init(viewModel: MainViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -70,22 +70,38 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         layout()
         setupAction()
+        initialization()
+        bind()
     }
 
     // MARK: - Methods
+    private func initialization() {
+        updateMetricSystemState(isOn: viewModel.metricSystemState)
+    }
+
+    private func bind() {
+        viewModel.metricSystemStateDidChange = { [weak self] isOn in
+            self?.updateMetricSystemState(isOn: isOn)
+            self?.historyTableView.reloadData()
+        }
+    }
+
     private func setupAction() {
         currentWeightView.metricSystemChange = { [weak self] isOn in
-            self?.metricSystemChange(isOn: isOn)
+            self?.changeMetricSystem(isOn: isOn)
         }
     }
 
     @objc private func addMeasurement() {
-        coordinator.showWeightMeasurement()
-        print("add Measure")
+        viewModel.showWeightMeasurement()
     }
 
-    private func metricSystemChange(isOn: Bool) {
-        print("metric System Change")
+    private func changeMetricSystem(isOn: Bool) {
+        viewModel.changeMetricSystem(isOn: isOn)
+    }
+
+    private func updateMetricSystemState(isOn: Bool) {
+        currentWeightView.updateMetricSystemSwitch(isOn: isOn)
     }
 
     private func layout() {
@@ -157,13 +173,13 @@ final class MainViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        presenter.friends.count
-        20
+        viewModel.numberOfRowsInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HistoryTableViewCell.identifier, for: indexPath) as! HistoryTableViewCell
-        cell.setupCell()
+        let model = viewModel.fetchViewModelForCell(with: indexPath)
+        cell.setupCell(with: model)
         return cell
     }
 
