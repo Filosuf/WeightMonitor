@@ -19,8 +19,8 @@ protocol MainViewModel {
     var numberOfRowsInSection: Int { get }
     func fetchViewModelForCell(with indexPath: IndexPath) -> HistoryCellModel
     func changeMetricSystem(isOn: Bool)
-    func showWeightMeasurement()
-
+    func showNewWeightMeasurement()
+    func showEditWeightMeasurement(indexPath: IndexPath)
 
     //binding
     var metricSystemStateDidChange: ((Bool) -> Void)? { get set }
@@ -31,8 +31,9 @@ final class MainViewModelImpl: MainViewModel {
     // MARK: - Properties
     private let coordinator: MainCoordinator
     private let settingsStorage: SettingsStorageProtocol
+    private let dateFormatter: DateTimeFormatter
 
-    var numberOfRowsInSection: Int { 10 }
+    var numberOfRowsInSection: Int { weightMeasurements.count }
     var metricSystemState = false {
         didSet {
             metricSystemStateDidChange?(metricSystemState)
@@ -43,9 +44,10 @@ final class MainViewModelImpl: MainViewModel {
     var metricSystemStateDidChange: ((Bool) -> Void)?
 
     // MARK: - Initialiser
-    init(coordinator: MainCoordinator, settingsStorage: SettingsStorageProtocol) {
+    init(coordinator: MainCoordinator, settingsStorage: SettingsStorageProtocol, dateFormatter: DateTimeFormatter) {
         self.coordinator = coordinator
         self.settingsStorage = settingsStorage
+        self.dateFormatter = dateFormatter
         initialization()
     }
 
@@ -74,13 +76,15 @@ final class MainViewModelImpl: MainViewModel {
         metricSystemState = isOn
     }
 
-    func showWeightMeasurement() {
+    func showNewWeightMeasurement() {
         coordinator.showWeightMeasurement()
     }
 
-    func finishEditing() {
-//        delegate.scheduleDidUpdate(schedule: schedule)
-//        coordinator.pop()
+    func showEditWeightMeasurement(indexPath: IndexPath) {
+        if weightMeasurements.count > indexPath.row {
+            let weightMeasurement = weightMeasurements[indexPath.row]
+            coordinator.showWeightMeasurement(weightMeasurement: weightMeasurement)
+        }
     }
 
     private func convertWeightToString(value: Double) -> String {
@@ -93,18 +97,10 @@ final class MainViewModelImpl: MainViewModel {
         return weightString
     }
 
-    private func getPreferredLocale() -> Locale {
-        guard let preferredIdentifier = Locale.preferredLanguages.first else {
-            return Locale.current
-        }
-        return Locale(identifier: preferredIdentifier)
-    }
-
     private func convertDateToString(date: Date) -> String {
-        let formatter = DateTimeFormatter()
         let components = Calendar.current.dateComponents([.year], from: Date(), to: date)
         let thisYear = components.year == 0
-        let dateString = formatter.dateToString(date: date, isShort: thisYear)
+        let dateString = dateFormatter.dateToString(date: date, isShort: thisYear)
         return dateString
     }
 }

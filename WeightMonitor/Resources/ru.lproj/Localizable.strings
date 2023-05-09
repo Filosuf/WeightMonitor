@@ -18,3 +18,9 @@ date = "Дата";
 
 kg = "кг";
 lb = "фунт";
+
+//MARK: - WeightMeasurementViewController
+addWeight = "Добавить вес";
+add = "Добавить";
+save = "Сохранить";
+

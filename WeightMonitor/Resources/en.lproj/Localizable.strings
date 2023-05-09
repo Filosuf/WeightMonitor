@@ -18,3 +18,9 @@ date = "Date";
 
 kg = "kg";
 lb = "lb";
+
+//MARK: - WeightMeasurementViewController
+addWeight = "Add weight";
+add = "Add";
+save = "Save";
+

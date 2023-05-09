@@ -93,7 +93,7 @@ final class MainViewController: UIViewController {
     }
 
     @objc private func addMeasurement() {
-        viewModel.showWeightMeasurement()
+        viewModel.showNewWeightMeasurement()
     }
 
     private func changeMetricSystem(isOn: Bool) {
@@ -192,6 +192,6 @@ extension MainViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        presenter.didSelectRow(index: indexPath)
+        viewModel.showEditWeightMeasurement(indexPath: indexPath)
     }
 }

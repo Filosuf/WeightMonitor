@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let controllersFactory = ViewControllersFactory()
         let settingsStorage = SettingsStorageService()
-        let mainCoordinator = MainCoordinator(controllersFactory: controllersFactory, settingsStorage: settingsStorage)
+        let convertor = MeasurementConvertorImp()
+        let dateFormatter = DateTimeFormatterImp()
+        let mainCoordinator = MainCoordinator(controllersFactory: controllersFactory, settingsStorage: settingsStorage, convertor: convertor, dateFormatter: dateFormatter)
         window?.rootViewController = mainCoordinator.startApplication()
         window?.makeKeyAndVisible()
     }

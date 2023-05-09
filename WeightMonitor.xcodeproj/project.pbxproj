@@ -26,6 +26,9 @@
 		7C5ABFF22A06EEF1005C1017 /* DateTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5ABFF12A06EEF1005C1017 /* DateTimeFormatter.swift */; };
 		7C5ABFF82A070451005C1017 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C5ABFFA2A070451005C1017 /* Localizable.strings */; };
 		7C5ABFFC2A070469005C1017 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7C5ABFFE2A070469005C1017 /* Localizable.stringsdict */; };
+		7C5AC0012A084E24005C1017 /* WeightMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0002A084E24005C1017 /* WeightMeasurementViewModel.swift */; };
+		7C5AC0042A09A6AA005C1017 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0032A09A6AA005C1017 /* Divider.swift */; };
+		7C5AC0072A0A1A81005C1017 /* MeasurementConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		7C5ABFFB2A070455005C1017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C5ABFFD2A070469005C1017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7C5ABFFF2A07046C005C1017 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		7C5AC0002A084E24005C1017 /* WeightMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeasurementViewModel.swift; sourceTree = "<group>"; };
+		7C5AC0032A09A6AA005C1017 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
+		7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementConvertor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +147,8 @@
 		7C5ABFCE2A038396005C1017 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7C5AC0052A0A1A3E005C1017 /* Convertors */,
+				7C5AC0022A09A677005C1017 /* Reusable */,
 				7C5ABFF02A06EECA005C1017 /* Formatters */,
 				7C5ABFE42A059A6B005C1017 /* Factories */,
 				7C5ABFCF2A0383A1005C1017 /* Extensions */,
@@ -201,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				7C5ABFEC2A059CD7005C1017 /* WeightMeasurementViewController.swift */,
+				7C5AC0002A084E24005C1017 /* WeightMeasurementViewModel.swift */,
 			);
 			path = WeightMeasurement;
 			sourceTree = "<group>";
@@ -211,6 +220,22 @@
 				7C5ABFF12A06EEF1005C1017 /* DateTimeFormatter.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		7C5AC0022A09A677005C1017 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				7C5AC0032A09A6AA005C1017 /* Divider.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		7C5AC0052A0A1A3E005C1017 /* Convertors */ = {
+			isa = PBXGroup;
+			children = (
+				7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */,
+			);
+			path = Convertors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +313,7 @@
 			files = (
 				7C5ABFD92A03A6A7005C1017 /* HistoryHeaderView.swift in Sources */,
 				7C2022892A0288C700D2E623 /* AppDelegate.swift in Sources */,
+				7C5AC0042A09A6AA005C1017 /* Divider.swift in Sources */,
 				7C5ABFED2A059CD7005C1017 /* WeightMeasurementViewController.swift in Sources */,
 				7C5ABFDB2A03B378005C1017 /* HistoryTableViewCell.swift in Sources */,
 				7C5ABFE32A059A62005C1017 /* MainCoordinator.swift in Sources */,
@@ -296,7 +322,9 @@
 				7C5ABFEF2A063A67005C1017 /* MainViewModel.swift in Sources */,
 				7C5ABFE62A059AB4005C1017 /* ViewControllersFactory.swift in Sources */,
 				7C5ABFF22A06EEF1005C1017 /* DateTimeFormatter.swift in Sources */,
+				7C5AC0012A084E24005C1017 /* WeightMeasurementViewModel.swift in Sources */,
 				7C20228B2A0288C700D2E623 /* SceneDelegate.swift in Sources */,
+				7C5AC0072A0A1A81005C1017 /* MeasurementConvertor.swift in Sources */,
 				7C5ABFEA2A059C31005C1017 /* WeightMeasurement.swift in Sources */,
 				7C5ABFCD2A037539005C1017 /* MainViewController.swift in Sources */,
 				7C5ABFD72A038E99005C1017 /* String+Extension.swift in Sources */,
