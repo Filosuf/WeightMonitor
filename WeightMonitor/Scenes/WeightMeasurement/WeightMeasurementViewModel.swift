@@ -14,7 +14,7 @@ protocol WeightMeasurementViewModelDelegate: AnyObject {
 protocol WeightMeasurementViewModel {
 
     var dateState: Date { get }
-
+    var metricSystem: Bool { get }
     var isNewWeightMeasurement: Bool { get }
     var weightValue: String? { get }
     var measurementValue: String? { get }
@@ -42,7 +42,7 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
 
     private var weightMeasurement: WeightMeasurement?
 
-    var metricSystem = false
+    private(set) var metricSystem = false
 
     private var weightState: Double? {
         didSet {
@@ -54,7 +54,7 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
         }
     }
 
-    var dateState = Date() {
+    private(set) var dateState = Date() {
         didSet {
             dateString = convertDateToString(date: dateState)
             dateStateDidChange?()
@@ -62,9 +62,9 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
     }
 
     var isNewWeightMeasurement: Bool { weightMeasurement == nil }
-    var weightValue: String? = nil
-    var measurementValue: String? = nil
-    var dateString: String? = nil
+    private(set) var weightValue: String? = nil
+    private(set) var measurementValue: String? = nil
+    private(set) var dateString: String? = nil
 
     var dateStateDidChange: (() -> Void)?
 

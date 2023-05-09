@@ -155,7 +155,8 @@ class WeightMeasurementViewController: UIViewController {
         dateButton.setTitle(viewModel.dateString, for: .normal)
         datePicker.date = viewModel.dateState
         weightValueField.text = viewModel.weightValue
-        measurementValueLabel.text = viewModel.measurementValue
+        let defaultMeasurementValueLabel = viewModel.metricSystem ? "kg".localized : "lb".localized
+        measurementValueLabel.text = viewModel.measurementValue ?? defaultMeasurementValueLabel
         setupView()
     }
 
