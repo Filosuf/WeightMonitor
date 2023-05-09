@@ -13,13 +13,13 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>f</string>
 			<key>one</key>
-			<string>%.1f фунт</string>
+			<string>фунт</string>
 			<key>few</key>
-			<string>%.1f фунтов</string>
+			<string>фунтов</string>
 			<key>many</key>
-			<string>%.1f фунтов</string>
+			<string>фунтов</string>
 			<key>other</key>
-			<string>%.1f фунта</string>
+			<string>фунта</string>
 		</dict>
 	</dict>
 </dict>

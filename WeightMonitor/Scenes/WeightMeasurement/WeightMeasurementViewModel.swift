@@ -99,7 +99,7 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
     }
 
     func weightValueChange(with weightString: String?) {
-        guard let text = weightString, let weight = Double(text) else { return }
+        guard let text = weightString, let weight = Double(text.replacingOccurrences(of: ",", with: ".")) else { return }
         weightState = weight
     }
 

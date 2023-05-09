@@ -113,6 +113,7 @@ final class CurrentWeightView: UIView {
 
             changingCurrentWeightLabel.bottomAnchor.constraint(equalTo: currentWeightValueLabel.bottomAnchor),
             changingCurrentWeightLabel.leadingAnchor.constraint(equalTo: currentWeightValueLabel.trailingAnchor, constant: 8),
+            changingCurrentWeightLabel.trailingAnchor.constraint(equalTo: scalesImage.leadingAnchor, constant: -4),
 
             metricSystemSwitch.topAnchor.constraint(equalTo: currentWeightValueLabel.bottomAnchor, constant: 16),
             metricSystemSwitch.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),

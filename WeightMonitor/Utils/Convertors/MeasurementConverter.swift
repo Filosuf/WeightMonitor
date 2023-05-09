@@ -16,15 +16,18 @@ protocol MeasurementConverter {
 
 final class MeasurementConverterImp: MeasurementConverter {
 
+    let formatter = NumberFormatter()
+
     func convertWeightToString(value: Double?, valueIsMetric: Bool) -> String? {
         guard let value = value else { return nil }
 
         let weightKg = Measurement(value: value, unit: UnitMass.kilograms)
         let weightLb = weightKg.converted(to: .pounds)
-        let weightKgRound = Double(round(10 * weightKg.value) / 10)
+        let weightKgRound = weightKg.value.fractionDigits(min: 0, max: 1)
+        let weightLbRound = weightKg.value.fractionDigits(min: 0, max: 1)
 
         //Используя 'MeasurementFormatter()' не удалось получить Фунт на русском языке
-        let weightString = valueIsMetric ? "\(weightKgRound) " + "kg".localized : String(format: "pounds".localized, weightLb.value)
+        let weightString = valueIsMetric ? "\(weightKgRound) " + "kg".localized : "\(weightLbRound) " + String(format: "pounds".localized, weightLb.value)
         return weightString
     }
 

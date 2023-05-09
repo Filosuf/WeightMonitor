@@ -76,7 +76,7 @@ final class HistoryTableViewCell: UITableViewCell {
 
                 changesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
                 changesLabel.leadingAnchor.constraint(equalTo: weightLabel.trailingAnchor, constant: 8),
-                changesLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: 8),
+                changesLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -8),
 
 
                 dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
