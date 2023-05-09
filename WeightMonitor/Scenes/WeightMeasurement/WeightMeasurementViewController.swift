@@ -102,11 +102,7 @@ class WeightMeasurementViewController: UIViewController {
         layout()
         initialization()
         bind()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
-        view.addGestureRecognizer(tapGesture)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        keyboardSettings()
     }
 
     // MARK: - Methods
@@ -189,6 +185,14 @@ class WeightMeasurementViewController: UIViewController {
         viewModel.saveMeasurement()
     }
 
+    private func keyboardSettings() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
+        view.addGestureRecognizer(tapGesture)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     private func layout() {
 
         [weightMeasurementTitle,

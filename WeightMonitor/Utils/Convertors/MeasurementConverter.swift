@@ -16,8 +16,6 @@ protocol MeasurementConverter {
 
 final class MeasurementConverterImp: MeasurementConverter {
 
-    let formatter = NumberFormatter()
-
     func convertWeightToString(value: Double?, valueIsMetric: Bool) -> String? {
         guard let value = value else { return nil }
 
@@ -40,15 +38,6 @@ final class MeasurementConverterImp: MeasurementConverter {
     func convertLbToKg(value: Double) -> Double {
         let weightLb = Measurement(value: value, unit: UnitMass.pounds)
         let weightKg = weightLb.converted(to: .kilograms)
-//        let weightKgRound = Double(round(10 * weightKg.value) / 10)
         return weightKg.value
-    }
-
-    func formatNumber(number: Double) -> String? {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 2
-
-        let formattedNumberString = formatter.string(from: NSNumber(value: number))
-        return formattedNumberString?.replacingOccurrences(of: ".00", with: "")
     }
 }

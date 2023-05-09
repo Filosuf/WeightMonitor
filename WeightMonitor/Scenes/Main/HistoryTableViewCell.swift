@@ -87,7 +87,6 @@ final class HistoryTableViewCell: UITableViewCell {
                 arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
                 arrowImage.heightAnchor.constraint(equalToConstant: 20),
                 arrowImage.widthAnchor.constraint(equalToConstant: 20),
-
             ])
         }
 }

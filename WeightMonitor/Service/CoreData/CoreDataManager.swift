@@ -25,6 +25,7 @@ final class CoreDataManager {
 
     private var context: NSManagedObjectContext { persistentContainer.viewContext }
 
+    // MARK: - Methods
     func saveContext () {
         if context.hasChanges {
             do {

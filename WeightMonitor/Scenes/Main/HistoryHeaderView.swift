@@ -53,7 +53,6 @@ final class HistoryHeaderView: UIView {
        }
 
     // MARK: - Methods
-
     private func layout() {
         [weightLabel,
          changesLabel,

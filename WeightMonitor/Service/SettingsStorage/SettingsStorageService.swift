@@ -18,6 +18,7 @@ final class SettingsStorageService: SettingsStorageProtocol {
     private let storage = UserDefaults.standard
     private let metricSystemKey = "metricSystem"
 
+    // MARK: - Methods
     func saveMetricSystem(isOn: Bool) {
         storage.set(isOn, forKey: metricSystemKey)
     }
