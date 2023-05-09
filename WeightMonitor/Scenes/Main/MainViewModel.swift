@@ -114,6 +114,7 @@ final class MainViewModelImpl: MainViewModel {
     func deleteWeightMeasurement(with indexPath: IndexPath) {
         guard weightMeasurements.count > indexPath.row else { return }
         let weightMeasurement = weightMeasurements[indexPath.row]
+        toastMessage = "measurementDeleted".localized
         weightDataStore.delete(weightMeasurement)
     }
 

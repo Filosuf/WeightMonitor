@@ -28,3 +28,4 @@ save = "Save";
 //MARK: - Toasts
 addedNewMeasurement = "Added a new measurement";
 measurementChanged = "Measurement changed";
+measurementDeleted = "Measurement deleted";

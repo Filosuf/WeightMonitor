@@ -28,3 +28,4 @@ save = "Сохранить";
 //MARK: - Toasts
 addedNewMeasurement = "Добавлено новое измерение";
 measurementChanged = "Измерение изменено";
+measurementDeleted = "Измерение удалено";
