@@ -76,6 +76,11 @@ final class CurrentWeightView: UIView {
         metricSystemSwitch.isOn = isOn
     }
 
+    func setupView(with model: HistoryCellModel) {
+        currentWeightValueLabel.text = model.weight
+        changingCurrentWeightLabel.text = model.change
+    }
+    
     @objc private func switchHandle() {
         metricSystemChange?(metricSystemSwitch.isOn)
     }

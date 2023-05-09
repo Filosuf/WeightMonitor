@@ -37,7 +37,7 @@ final class HistoryTableViewCell: UITableViewCell {
 
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.image = UIImage(named: "chevron.right")
         imageView.tintColor = .Custom.black
         return imageView
     }()

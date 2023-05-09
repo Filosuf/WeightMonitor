@@ -13,29 +13,50 @@ final class MainCoordinator {
     private var navCon: UINavigationController?
     private let controllersFactory: ViewControllersFactory
     private let settingsStorage: SettingsStorageProtocol
-    private let convertor: MeasurementConvertor
+    private let converter: MeasurementConverter
     private let dateFormatter: DateTimeFormatter
+    private let weightDataStore: WeightDataStore
 
     private var weightMeasurementVC: WeightMeasurementViewController?
 
     //MARK: - Initialiser
-    init(controllersFactory: ViewControllersFactory, settingsStorage: SettingsStorageProtocol, convertor: MeasurementConvertor, dateFormatter: DateTimeFormatter) {
+    init(
+        controllersFactory: ViewControllersFactory,
+        settingsStorage: SettingsStorageProtocol,
+        converter: MeasurementConverter,
+        dateFormatter: DateTimeFormatter,
+        weightDataStore: WeightDataStore
+    ) {
         self.controllersFactory = controllersFactory
         self.settingsStorage = settingsStorage
-        self.convertor = convertor
+        self.converter = converter
         self.dateFormatter = dateFormatter
+        self.weightDataStore = weightDataStore
     }
 
     // MARK: - Methods
     func startApplication() -> UIViewController {
-        let vc = controllersFactory.makeMainViewController(coordinator: self, settingsStorageService: settingsStorage, dateFormatter: dateFormatter)
+        let vc = controllersFactory.makeMainViewController(
+            coordinator: self,
+            settingsStorageService: settingsStorage,
+            dateFormatter: dateFormatter,
+            weightDataStore: weightDataStore,
+            converter: converter
+        )
         navCon = UINavigationController(rootViewController: vc)
         navCon?.isNavigationBarHidden = true
         return navCon!
     }
 
     func showWeightMeasurement(weightMeasurement: WeightMeasurement? = nil) {
-        let vc = controllersFactory.makeWeightMeasurementViewController(coordinator: self, settingsStorageService: settingsStorage, convertor: convertor, dateFormatter: dateFormatter, weightMeasurement: nil)
+        let vc = controllersFactory.makeWeightMeasurementViewController(
+            coordinator: self,
+            settingsStorageService: settingsStorage,
+            converter: converter,
+            dateFormatter: dateFormatter,
+            weightDataStore: weightDataStore,
+            weightMeasurement: weightMeasurement
+        )
         weightMeasurementVC = vc
         navCon?.present(vc, animated: true)
     }

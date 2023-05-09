@@ -21,6 +21,9 @@ lb = "lb";
 
 //MARK: - WeightMeasurementViewController
 addWeight = "Add weight";
+editWeight = "Edit Weight";
 add = "Add";
 save = "Save";
 
+//MARK: - Toasts
+AddedNewDimension = "Added a new dimension";

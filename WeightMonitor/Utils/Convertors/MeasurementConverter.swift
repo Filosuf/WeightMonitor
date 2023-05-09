@@ -1,5 +1,5 @@
 //
-//  MeasurementConvertor.swift
+//  MeasurementConverter.swift
 //  WeightMonitor
 //
 //  Created by Filosuf on 09.05.2023.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol MeasurementConvertor {
+protocol MeasurementConverter {
 
     func convertWeightToString(value: Double?, valueIsMetric: Bool) -> String?
     func convertKgToLb(value: Double) -> Double
     func convertLbToKg(value: Double) -> Double
 }
 
-final class MeasurementConvertorImp: MeasurementConvertor {
+final class MeasurementConverterImp: MeasurementConverter {
 
     func convertWeightToString(value: Double?, valueIsMetric: Bool) -> String? {
         guard let value = value else { return nil }
@@ -31,14 +31,21 @@ final class MeasurementConvertorImp: MeasurementConvertor {
     func convertKgToLb(value: Double) -> Double {
         let weightKg = Measurement(value: value, unit: UnitMass.kilograms)
         let weightLb = weightKg.converted(to: .pounds)
-        let weightLbRound = Double(round(10 * weightLb.value) / 10)
-        return weightLbRound
+        return weightLb.value
     }
 
     func convertLbToKg(value: Double) -> Double {
         let weightLb = Measurement(value: value, unit: UnitMass.pounds)
         let weightKg = weightLb.converted(to: .kilograms)
-        let weightKgRound = Double(round(10 * weightKg.value) / 10)
-        return weightKgRound
+//        let weightKgRound = Double(round(10 * weightKg.value) / 10)
+        return weightKg.value
+    }
+
+    func formatNumber(number: Double) -> String? {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 2
+
+        let formattedNumberString = formatter.string(from: NSNumber(value: number))
+        return formattedNumberString?.replacingOccurrences(of: ".00", with: "")
     }
 }

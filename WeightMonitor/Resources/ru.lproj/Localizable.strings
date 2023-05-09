@@ -21,6 +21,9 @@ lb = "фунт";
 
 //MARK: - WeightMeasurementViewController
 addWeight = "Добавить вес";
+editWeight = "Изменить вес";
 add = "Добавить";
 save = "Сохранить";
 
+//MARK: - Toasts
+AddedNewDimension = "Добавлено новое измерение";

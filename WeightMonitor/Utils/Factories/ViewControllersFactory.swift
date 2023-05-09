@@ -9,14 +9,42 @@ import Foundation
 
 final class ViewControllersFactory {
 
-    func makeMainViewController(coordinator: MainCoordinator, settingsStorageService: SettingsStorageProtocol, dateFormatter: DateTimeFormatter) -> MainViewController {
-        let viewModel = MainViewModelImpl(coordinator: coordinator, settingsStorage: settingsStorageService, dateFormatter: dateFormatter)
+    func makeMainViewController(
+        coordinator: MainCoordinator,
+        settingsStorageService: SettingsStorageProtocol,
+        dateFormatter: DateTimeFormatter,
+        weightDataStore: WeightDataStore,
+        converter: MeasurementConverter
+    ) -> MainViewController {
+
+        let viewModel = MainViewModelImpl(
+            coordinator: coordinator,
+            settingsStorage: settingsStorageService,
+            dateFormatter: dateFormatter,
+            weightDataStore: weightDataStore,
+            converter: converter
+        )
         let viewController = MainViewController(viewModel: viewModel)
         return viewController
     }
 
-    func makeWeightMeasurementViewController(coordinator: MainCoordinator, settingsStorageService: SettingsStorageProtocol, convertor: MeasurementConvertor, dateFormatter: DateTimeFormatter, weightMeasurement: WeightMeasurement?) -> WeightMeasurementViewController {
-        let viewModel = WeightMeasurementViewModelImpl(coordinator: coordinator, settingsStorage: settingsStorageService, convertor: convertor,dateFormatter: dateFormatter, weightMeasurement: weightMeasurement)
+    func makeWeightMeasurementViewController(
+        coordinator: MainCoordinator,
+        settingsStorageService: SettingsStorageProtocol,
+        converter: MeasurementConverter,
+        dateFormatter: DateTimeFormatter,
+        weightDataStore: WeightDataStore,
+        weightMeasurement: WeightMeasurement?
+    ) -> WeightMeasurementViewController {
+
+        let viewModel = WeightMeasurementViewModelImpl(
+            coordinator: coordinator,
+            settingsStorage: settingsStorageService,
+            converter: converter,
+            dateFormatter: dateFormatter,
+            weightDataStore: weightDataStore,
+            weightMeasurement: weightMeasurement
+        )
         let viewController = WeightMeasurementViewController(viewModel: viewModel)
         return viewController
     }

@@ -8,6 +8,7 @@
 import Foundation
 
 struct WeightMeasurement {
+    let id: String
     let weight: Double
     let date: Date
 }

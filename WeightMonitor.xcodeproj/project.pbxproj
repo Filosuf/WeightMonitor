@@ -28,7 +28,11 @@
 		7C5ABFFC2A070469005C1017 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 7C5ABFFE2A070469005C1017 /* Localizable.stringsdict */; };
 		7C5AC0012A084E24005C1017 /* WeightMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0002A084E24005C1017 /* WeightMeasurementViewModel.swift */; };
 		7C5AC0042A09A6AA005C1017 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0032A09A6AA005C1017 /* Divider.swift */; };
-		7C5AC0072A0A1A81005C1017 /* MeasurementConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */; };
+		7C5AC0072A0A1A81005C1017 /* MeasurementConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0062A0A1A81005C1017 /* MeasurementConverter.swift */; };
+		7C5AC00A2A0A34EA005C1017 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0092A0A34EA005C1017 /* CoreDataManager.swift */; };
+		7C5AC00D2A0A3521005C1017 /* Weight.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC00B2A0A3521005C1017 /* Weight.xcdatamodeld */; };
+		7C5AC00F2A0A362D005C1017 /* WeightDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC00E2A0A362D005C1017 /* WeightDataStore.swift */; };
+		7C5AC0112A0A3C0A005C1017 /* WeightCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5AC0102A0A3C0A005C1017 /* WeightCoreData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,7 +62,11 @@
 		7C5ABFFF2A07046C005C1017 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7C5AC0002A084E24005C1017 /* WeightMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightMeasurementViewModel.swift; sourceTree = "<group>"; };
 		7C5AC0032A09A6AA005C1017 /* Divider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Divider.swift; sourceTree = "<group>"; };
-		7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementConvertor.swift; sourceTree = "<group>"; };
+		7C5AC0062A0A1A81005C1017 /* MeasurementConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementConverter.swift; sourceTree = "<group>"; };
+		7C5AC0092A0A34EA005C1017 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		7C5AC00C2A0A3521005C1017 /* Weight.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weight.xcdatamodel; sourceTree = "<group>"; };
+		7C5AC00E2A0A362D005C1017 /* WeightDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightDataStore.swift; sourceTree = "<group>"; };
+		7C5AC0102A0A3C0A005C1017 /* WeightCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCoreData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +176,7 @@
 		7C5ABFDC2A058581005C1017 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				7C5AC0082A0A342C005C1017 /* CoreData */,
 				7C5ABFDD2A05858E005C1017 /* SettingsStorage */,
 			);
 			path = Service;
@@ -176,6 +185,7 @@
 		7C5ABFDD2A05858E005C1017 /* SettingsStorage */ = {
 			isa = PBXGroup;
 			children = (
+				7C5AC0102A0A3C0A005C1017 /* WeightCoreData.swift */,
 				7C5ABFDF2A058647005C1017 /* SettingsStorageService.swift */,
 			);
 			path = SettingsStorage;
@@ -233,9 +243,19 @@
 		7C5AC0052A0A1A3E005C1017 /* Convertors */ = {
 			isa = PBXGroup;
 			children = (
-				7C5AC0062A0A1A81005C1017 /* MeasurementConvertor.swift */,
+				7C5AC0062A0A1A81005C1017 /* MeasurementConverter.swift */,
 			);
 			path = Convertors;
+			sourceTree = "<group>";
+		};
+		7C5AC0082A0A342C005C1017 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				7C5AC0092A0A34EA005C1017 /* CoreDataManager.swift */,
+				7C5AC00E2A0A362D005C1017 /* WeightDataStore.swift */,
+				7C5AC00B2A0A3521005C1017 /* Weight.xcdatamodeld */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +334,8 @@
 				7C5ABFD92A03A6A7005C1017 /* HistoryHeaderView.swift in Sources */,
 				7C2022892A0288C700D2E623 /* AppDelegate.swift in Sources */,
 				7C5AC0042A09A6AA005C1017 /* Divider.swift in Sources */,
+				7C5AC00A2A0A34EA005C1017 /* CoreDataManager.swift in Sources */,
+				7C5AC00F2A0A362D005C1017 /* WeightDataStore.swift in Sources */,
 				7C5ABFED2A059CD7005C1017 /* WeightMeasurementViewController.swift in Sources */,
 				7C5ABFDB2A03B378005C1017 /* HistoryTableViewCell.swift in Sources */,
 				7C5ABFE32A059A62005C1017 /* MainCoordinator.swift in Sources */,
@@ -324,7 +346,9 @@
 				7C5ABFF22A06EEF1005C1017 /* DateTimeFormatter.swift in Sources */,
 				7C5AC0012A084E24005C1017 /* WeightMeasurementViewModel.swift in Sources */,
 				7C20228B2A0288C700D2E623 /* SceneDelegate.swift in Sources */,
-				7C5AC0072A0A1A81005C1017 /* MeasurementConvertor.swift in Sources */,
+				7C5AC0072A0A1A81005C1017 /* MeasurementConverter.swift in Sources */,
+				7C5AC0112A0A3C0A005C1017 /* WeightCoreData.swift in Sources */,
+				7C5AC00D2A0A3521005C1017 /* Weight.xcdatamodeld in Sources */,
 				7C5ABFEA2A059C31005C1017 /* WeightMeasurement.swift in Sources */,
 				7C5ABFCD2A037539005C1017 /* MainViewController.swift in Sources */,
 				7C5ABFD72A038E99005C1017 /* String+Extension.swift in Sources */,
@@ -561,6 +585,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7C5AC00B2A0A3521005C1017 /* Weight.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7C5AC00C2A0A3521005C1017 /* Weight.xcdatamodel */,
+			);
+			currentVersion = 7C5AC00C2A0A3521005C1017 /* Weight.xcdatamodel */;
+			path = Weight.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7C20227D2A0288C700D2E623 /* Project object */;
 }

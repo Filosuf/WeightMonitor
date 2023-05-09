@@ -21,9 +21,11 @@ protocol MainViewModel {
     func changeMetricSystem(isOn: Bool)
     func showNewWeightMeasurement()
     func showEditWeightMeasurement(indexPath: IndexPath)
+    func deleteWeightMeasurement(with indexPath: IndexPath)
 
     //binding
     var metricSystemStateDidChange: ((Bool) -> Void)? { get set }
+    var weightMeasurementsDidChange: (() -> Void)? { get set }
 }
 
 final class MainViewModelImpl: MainViewModel {
@@ -32,6 +34,8 @@ final class MainViewModelImpl: MainViewModel {
     private let coordinator: MainCoordinator
     private let settingsStorage: SettingsStorageProtocol
     private let dateFormatter: DateTimeFormatter
+    private let weightDataStore: WeightDataStore
+    private let converter: MeasurementConverter
 
     var numberOfRowsInSection: Int { weightMeasurements.count }
     var metricSystemState = false {
@@ -39,24 +43,35 @@ final class MainViewModelImpl: MainViewModel {
             metricSystemStateDidChange?(metricSystemState)
         }
     }
-    var weightMeasurements: [WeightMeasurement] = []
+    var weightMeasurements: [WeightMeasurement] = [] {
+        didSet {
+            weightMeasurementsDidChange?()
+        }
+    }
 
     var metricSystemStateDidChange: ((Bool) -> Void)?
+    var weightMeasurementsDidChange: (() -> Void)?
 
     // MARK: - Initialiser
-    init(coordinator: MainCoordinator, settingsStorage: SettingsStorageProtocol, dateFormatter: DateTimeFormatter) {
+    init(coordinator: MainCoordinator,
+         settingsStorage: SettingsStorageProtocol,
+         dateFormatter: DateTimeFormatter,
+         weightDataStore: WeightDataStore,
+         converter: MeasurementConverter
+    ) {
         self.coordinator = coordinator
         self.settingsStorage = settingsStorage
         self.dateFormatter = dateFormatter
+        self.weightDataStore = weightDataStore
+        self.converter = converter
         initialization()
     }
 
     // MARK: - Methods
     private func initialization() {
         metricSystemState = settingsStorage.fetchMetricSystem()
-        let date: Date = Date()
-        let weight = WeightMeasurement(weight: 45, date: date)
-        weightMeasurements = [weight, weight, weight, weight, weight, weight]
+        updateWeightMeasurements()
+        addObserverContextCoreData()
     }
 
     func fetchViewModelForCell(with indexPath: IndexPath) -> HistoryCellModel {
@@ -65,9 +80,10 @@ final class MainViewModelImpl: MainViewModel {
         let weightMeasurement = weightMeasurements[indexPath.row]
 
         let weight = convertWeightToString(value: weightMeasurement.weight)
+        let change = calcChange(with: indexPath.row)
         let date = convertDateToString(date: weightMeasurement.date)
 
-        let cellViewModel = HistoryCellModel(weight: weight, change: "0,5", date: date)
+        let cellViewModel = HistoryCellModel(weight: weight, change: change, date: date)
         return cellViewModel
     }
 
@@ -87,14 +103,28 @@ final class MainViewModelImpl: MainViewModel {
         }
     }
 
-    private func convertWeightToString(value: Double) -> String {
-        let weightKg = Measurement(value: value, unit: UnitMass.kilograms)
-        let weightLb = weightKg.converted(to: .pounds)
-        let weightKgRound = Double(round(10 * weightKg.value) / 10)
+    func deleteWeightMeasurement(with indexPath: IndexPath) {
+        guard weightMeasurements.count > indexPath.row else { return }
+        let weightMeasurement = weightMeasurements[indexPath.row]
+        weightDataStore.delete(weightMeasurement)
+    }
 
-        //Используя 'MeasurementFormatter()' не удалось получить Фунт на русском языке
-        let weightString = metricSystemState ? "\(weightKgRound) " + "kg".localized : String(format: "pounds".localized, weightLb.value)
-        return weightString
+    private func calcChange(with index: Int) -> String {
+        guard weightMeasurements.count > index + 1 else { return ""}
+        let changeKg = weightMeasurements[index].weight - weightMeasurements[index + 1].weight
+        var change = convertWeightToString(value: changeKg)
+        if changeKg > 0 {
+            change = "+" + change
+        }
+        return change
+    }
+
+    private func updateWeightMeasurements() {
+        weightMeasurements = weightDataStore.fetchWeightMeasurements()
+    }
+
+    private func convertWeightToString(value: Double) -> String {
+        converter.convertWeightToString(value: value, valueIsMetric: metricSystemState) ?? ""
     }
 
     private func convertDateToString(date: Date) -> String {
@@ -102,5 +132,16 @@ final class MainViewModelImpl: MainViewModel {
         let thisYear = components.year == 0
         let dateString = dateFormatter.dateToString(date: date, isShort: thisYear)
         return dateString
+    }
+
+    private func addObserverContextCoreData() {
+        NotificationCenter.default
+            .addObserver(
+                forName: weightDataStore.notificationName,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                self?.updateWeightMeasurements()
+            }
     }
 }

@@ -40,7 +40,7 @@ class WeightMeasurementViewController: UIViewController {
 
     private let arrowImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.image = UIImage(named: "chevron.right")
         imageView.tintColor = .Custom.black
         return imageView
     }()
@@ -62,7 +62,6 @@ class WeightMeasurementViewController: UIViewController {
         textField.autocapitalizationType = .none
         textField.keyboardType = .decimalPad
         textField.addTarget(self, action: #selector(weightValueChange), for: .editingChanged)
-        textField.delegate = self
         return textField
     }()
 
@@ -153,7 +152,21 @@ class WeightMeasurementViewController: UIViewController {
     }
 
     private func initialization() {
+        dateButton.setTitle(viewModel.dateString, for: .normal)
+        datePicker.date = viewModel.dateState
+        weightValueField.text = viewModel.weightValue
+        measurementValueLabel.text = viewModel.measurementValue
+        setupView()
+    }
 
+    private func setupView() {
+        if viewModel.isNewWeightMeasurement {
+            weightMeasurementTitle.text = "addWeight".localized
+            saveButton.setTitle("add".localized, for: .normal)
+        } else {
+            weightMeasurementTitle.text = "editWeight".localized
+            saveButton.setTitle("save".localized, for: .normal)
+        }
     }
 
     private func bind() {
@@ -246,13 +259,5 @@ class WeightMeasurementViewController: UIViewController {
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             saveButton.heightAnchor.constraint(equalToConstant: 48)
         ])
-    }
-}
-
-//MARK: - UITextFieldDelegate
-extension WeightMeasurementViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return true
     }
 }
