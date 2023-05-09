@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol WeightMeasurementViewModelDelegate: AnyObject {
+    func editingOfWeightMeasurementIsCompleted(isNewWeightMeasurement: Bool)
+}
+
 protocol WeightMeasurementViewModel {
 
     var dateState: Date { get }
@@ -33,6 +37,8 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
     private let converter: MeasurementConverter
     private let dateFormatter: DateTimeFormatter
     private let weightDataStore: WeightDataStore
+
+    weak var delegate: WeightMeasurementViewModelDelegate?
 
     private var weightMeasurement: WeightMeasurement?
 
@@ -102,8 +108,9 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
         let weightKg = metricSystem ? weight : converter.convertLbToKg(value: weight)
         let id = weightMeasurement?.id ?? UUID().uuidString.lowercased()
         let newMeasurement = WeightMeasurement(id: id, weight: weightKg, date: dateState)
-        coordinator.dismiss()
         weightDataStore.save(newMeasurement)
+        delegate?.editingOfWeightMeasurementIsCompleted(isNewWeightMeasurement: isNewWeightMeasurement)
+        coordinator.dismiss()
     }
 
     private func convertWeightToString(value: Double?) -> String? {

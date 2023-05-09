@@ -17,6 +17,7 @@ protocol MainViewModel {
 
     var metricSystemState: Bool { get }
     var numberOfRowsInSection: Int { get }
+    
     func fetchViewModelForCell(with indexPath: IndexPath) -> HistoryCellModel
     func changeMetricSystem(isOn: Bool)
     func showNewWeightMeasurement()
@@ -26,6 +27,7 @@ protocol MainViewModel {
     //binding
     var metricSystemStateDidChange: ((Bool) -> Void)? { get set }
     var weightMeasurementsDidChange: (() -> Void)? { get set }
+    var toastMessageGenerated: ((String) -> Void)? { get set }
 }
 
 final class MainViewModelImpl: MainViewModel {
@@ -38,19 +40,25 @@ final class MainViewModelImpl: MainViewModel {
     private let converter: MeasurementConverter
 
     var numberOfRowsInSection: Int { weightMeasurements.count }
-    var metricSystemState = false {
+    private(set) var metricSystemState = false {
         didSet {
             metricSystemStateDidChange?(metricSystemState)
         }
     }
-    var weightMeasurements: [WeightMeasurement] = [] {
+    private(set) var weightMeasurements: [WeightMeasurement] = [] {
         didSet {
             weightMeasurementsDidChange?()
+        }
+    }
+    private(set) var toastMessage = "" {
+        didSet {
+            toastMessageGenerated?(toastMessage)
         }
     }
 
     var metricSystemStateDidChange: ((Bool) -> Void)?
     var weightMeasurementsDidChange: (() -> Void)?
+    var toastMessageGenerated: ((String) -> Void)?
 
     // MARK: - Initialiser
     init(coordinator: MainCoordinator,
@@ -93,13 +101,13 @@ final class MainViewModelImpl: MainViewModel {
     }
 
     func showNewWeightMeasurement() {
-        coordinator.showWeightMeasurement()
+        coordinator.showWeightMeasurement(delegate: self)
     }
 
     func showEditWeightMeasurement(indexPath: IndexPath) {
         if weightMeasurements.count > indexPath.row {
             let weightMeasurement = weightMeasurements[indexPath.row]
-            coordinator.showWeightMeasurement(weightMeasurement: weightMeasurement)
+            coordinator.showWeightMeasurement(delegate: self, weightMeasurement: weightMeasurement)
         }
     }
 
@@ -143,5 +151,11 @@ final class MainViewModelImpl: MainViewModel {
             ) { [weak self] _ in
                 self?.updateWeightMeasurements()
             }
+    }
+}
+
+extension MainViewModelImpl: WeightMeasurementViewModelDelegate {
+    func editingOfWeightMeasurementIsCompleted(isNewWeightMeasurement: Bool) {
+        toastMessage = isNewWeightMeasurement ? "addedNewMeasurement".localized : "measurementChanged".localized
     }
 }

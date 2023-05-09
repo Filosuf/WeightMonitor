@@ -94,6 +94,9 @@ final class MainViewController: UIViewController {
         viewModel.weightMeasurementsDidChange = { [weak self] in
             self?.updateView()
         }
+        viewModel.toastMessageGenerated = { [weak self] message in
+            self?.showToast(message: message)
+        }
     }
 
     private func updateView() {
@@ -233,7 +236,7 @@ extension MainViewController: UITableViewDelegate {
 
 // MARK: - Toasts
 extension MainViewController {
-    func showToast(message: String) {
+    func showToast(message: String?) {
 
         let toastLabel: UILabel = {
             let label = UILabel()

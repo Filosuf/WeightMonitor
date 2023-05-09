@@ -26,4 +26,5 @@ add = "Add";
 save = "Save";
 
 //MARK: - Toasts
-AddedNewDimension = "Added a new dimension";
+addedNewMeasurement = "Added a new measurement";
+measurementChanged = "Measurement changed";

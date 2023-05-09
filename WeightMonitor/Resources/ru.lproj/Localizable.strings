@@ -26,4 +26,5 @@ add = "Добавить";
 save = "Сохранить";
 
 //MARK: - Toasts
-AddedNewDimension = "Добавлено новое измерение";
+addedNewMeasurement = "Добавлено новое измерение";
+measurementChanged = "Измерение изменено";

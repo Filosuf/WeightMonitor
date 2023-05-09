@@ -48,13 +48,14 @@ final class MainCoordinator {
         return navCon!
     }
 
-    func showWeightMeasurement(weightMeasurement: WeightMeasurement? = nil) {
+    func showWeightMeasurement(delegate: WeightMeasurementViewModelDelegate?, weightMeasurement: WeightMeasurement? = nil) {
         let vc = controllersFactory.makeWeightMeasurementViewController(
             coordinator: self,
             settingsStorageService: settingsStorage,
             converter: converter,
             dateFormatter: dateFormatter,
             weightDataStore: weightDataStore,
+            delegate: delegate,
             weightMeasurement: weightMeasurement
         )
         weightMeasurementVC = vc

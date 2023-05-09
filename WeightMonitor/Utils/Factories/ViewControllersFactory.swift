@@ -34,6 +34,7 @@ final class ViewControllersFactory {
         converter: MeasurementConverter,
         dateFormatter: DateTimeFormatter,
         weightDataStore: WeightDataStore,
+        delegate: WeightMeasurementViewModelDelegate?,
         weightMeasurement: WeightMeasurement?
     ) -> WeightMeasurementViewController {
 
@@ -45,6 +46,7 @@ final class ViewControllersFactory {
             weightDataStore: weightDataStore,
             weightMeasurement: weightMeasurement
         )
+        viewModel.delegate = delegate
         let viewController = WeightMeasurementViewController(viewModel: viewModel)
         return viewController
     }
