@@ -7,7 +7,14 @@
 
 import UIKit
 
-final class MainCoordinator {
+protocol MainCoordinator {
+
+    func startApplication() -> UIViewController
+    func showWeightMeasurement(delegate: WeightMeasurementViewModelDelegate?, weightMeasurement: WeightMeasurement?)
+    func dismiss()
+}
+
+final class MainCoordinatorImpl: MainCoordinator {
 
     // MARK: - Properties
     private var navCon: UINavigationController?

@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let converter = MeasurementConverterImp()
         let dateFormatter = DateTimeFormatterImp()
         let weightDataStore = CoreDataManager()
-        let mainCoordinator = MainCoordinator(
+        let mainCoordinator = MainCoordinatorImpl(
             controllersFactory: controllersFactory,
             settingsStorage: settingsStorage,
             converter: converter,

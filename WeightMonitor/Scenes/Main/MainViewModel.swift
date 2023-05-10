@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HistoryCellModel {
+struct HistoryCellModel: Equatable {
     let weight: String
     let change: String
     let date: String
@@ -101,7 +101,7 @@ final class MainViewModelImpl: MainViewModel {
     }
 
     func showNewWeightMeasurement() {
-        coordinator.showWeightMeasurement(delegate: self)
+        coordinator.showWeightMeasurement(delegate: self, weightMeasurement: nil)
     }
 
     func showEditWeightMeasurement(indexPath: IndexPath) {

@@ -10,7 +10,6 @@ import CoreData
 
 protocol WeightDataStore {
     // MARK: - Properties
-    var managedObjectContext: NSManagedObjectContext { get }
     var notificationName: Notification.Name { get }
 
     // MARK: - Methods

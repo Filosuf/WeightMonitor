@@ -50,9 +50,6 @@ final class CoreDataManager {
 // MARK: - NotepadDataStore
 extension CoreDataManager: WeightDataStore {
     var notificationName: Notification.Name { didChangeNotification }
-    var managedObjectContext: NSManagedObjectContext {
-        context
-    }
 
     func save(_ weight: WeightMeasurement) {
         let newWeightCoreData = fetchWeightMeasurement(weight: weight) ?? WeightCoreData(context: context)
