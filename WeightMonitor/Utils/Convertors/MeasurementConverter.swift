@@ -22,7 +22,7 @@ final class MeasurementConverterImp: MeasurementConverter {
         let weightKg = Measurement(value: value, unit: UnitMass.kilograms)
         let weightLb = weightKg.converted(to: .pounds)
         let weightKgRound = weightKg.value.fractionDigits(min: 0, max: 1)
-        let weightLbRound = weightKg.value.fractionDigits(min: 0, max: 1)
+        let weightLbRound = weightLb.value.fractionDigits(min: 0, max: 1)
 
         //Используя 'MeasurementFormatter()' не удалось получить Фунт на русском языке
         let weightString = valueIsMetric ? "\(weightKgRound) " + "kg".localized : "\(weightLbRound) " + String(format: "pounds".localized, weightLb.value)
