@@ -6,7 +6,7 @@
 Полное описание функциональных требований находится в [техническом задании](https://sashenka.notion.site/1ca42b7648804044b85ddfdb9d7df300). Проект в [Figma](https://www.figma.com/file/daYcQEb497IYb8fVBiR951/Weight-Monitor-test-task?node-id=0-1&t=jmLZfad4pWV3SPtU-0).
 
 ---
-![](https://ibb.co/0QRt9rs)
+![](https://e.radikal.host/2023/05/10/D338AC05-D5A9-46F9-AA8B-F0E3782CCE5C.md.png)
 
 
  - Приложение написано на архитектуре `MVVM`(binding with closure) с использованием координатора и фабрики для создания контроллеров
@@ -15,26 +15,29 @@
 
 ---
 Приложение поддерживает русскую и английскую локализацию. Учитывается текущая `Local` при выводе дробных чисел (точка или запятая). Так же не показываются лишние нули при круглом значении.
-![](https://ibb.co/ryCN8cy)
+  
+![](https://e.radikal.host/2023/05/10/A84CB933-7529-4F99-89CE-61AE41102734.md.png)
 
 ---
 Приложение позволяет отслеживать вес в кг и фунтах. Переключение происходит по слайдеру.
-![](https://ibb.co/VV5BW5k)
+  
+![](https://e.radikal.host/2023/05/10/C662ADD8-90DE-4FB9-BCE2-667F3A28A86A.md.png)
 
 ---
 Приложение поддерживает темную тему.
-![](https://ibb.co/Xz4mcSc)
+  
+![](https://e.radikal.host/2023/05/10/A7F07DF3-94B1-4CBF-A8D4-C6F62CA9540E.md.png)
 
 ---
 Приложение корректно отображает дату согласно текущей `Local`.
 
-Россия:
-![](https://ibb.co/StVBcHv)
+Россия:  
+![](https://e.radikal.host/2023/05/10/D145A4E2-C560-4D46-B9E0-C0AA34D5CEA3.md.jpg)
 
-Великобритания:
-![](https://ibb.co/q1KFDwF)
+Великобритания:  
+![](https://e.radikal.host/2023/05/10/F9FBDF9A-CB28-47C2-B523-338FE21507A2.md.jpg)
 
-США:
-![](https://ibb.co/VNLmQ6z)
+США:   
+![](https://e.radikal.host/2023/05/10/F5537A36-6C59-4A83-9E42-65479C820603.md.jpg)
 
 ---
