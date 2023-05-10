@@ -81,8 +81,6 @@ final class HistoryHeaderView: UIView {
             dividerImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             dividerImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             dividerImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-
         ])
     }
-
 }

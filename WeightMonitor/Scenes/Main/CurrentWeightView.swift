@@ -28,7 +28,6 @@ final class CurrentWeightView: UIView {
 
     private let currentWeightValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "58,5 kg"
         label.font = UIFont.systemFont(ofSize: 22)
         label.textColor = .Custom.black
         return label
@@ -36,7 +35,6 @@ final class CurrentWeightView: UIView {
 
     private let changingCurrentWeightLabel: UILabel = {
         let label = UILabel()
-        label.text = "-0,5 kg"
         label.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         label.textColor = .Custom.grayText
         return label
@@ -61,9 +59,9 @@ final class CurrentWeightView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         backgroundColor = .Custom.grayBackground
-        layout()
         layer.cornerRadius = 12
         layer.masksToBounds = true
+        layout()
     }
 
     required init?(coder aDecoder: NSCoder)
@@ -105,17 +103,15 @@ final class CurrentWeightView: UIView {
 
             currentWeightTitle.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             currentWeightTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            currentWeightTitle.heightAnchor.constraint(equalToConstant: 18),
 
-            currentWeightValueLabel.topAnchor.constraint(equalTo: currentWeightTitle.bottomAnchor, constant: 6),
+            currentWeightValueLabel.topAnchor.constraint(equalTo: topAnchor, constant: 40),
             currentWeightValueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            currentWeightValueLabel.heightAnchor.constraint(equalToConstant: 26),
 
             changingCurrentWeightLabel.bottomAnchor.constraint(equalTo: currentWeightValueLabel.bottomAnchor),
             changingCurrentWeightLabel.leadingAnchor.constraint(equalTo: currentWeightValueLabel.trailingAnchor, constant: 8),
-            changingCurrentWeightLabel.trailingAnchor.constraint(equalTo: scalesImage.leadingAnchor, constant: -4),
+            changingCurrentWeightLabel.trailingAnchor.constraint(lessThanOrEqualTo: scalesImage.leadingAnchor, constant: -4),
 
-            metricSystemSwitch.topAnchor.constraint(equalTo: currentWeightValueLabel.bottomAnchor, constant: 16),
+            metricSystemSwitch.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             metricSystemSwitch.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
 
             metricSystemLabel.centerYAnchor.constraint(equalTo: metricSystemSwitch.centerYAnchor),

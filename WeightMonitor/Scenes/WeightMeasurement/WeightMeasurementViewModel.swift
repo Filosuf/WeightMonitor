@@ -89,7 +89,6 @@ final class WeightMeasurementViewModelImpl: WeightMeasurementViewModel {
     // MARK: - Methods
     private func initialization() {
         metricSystem = settingsStorage.fetchMetricSystem()
-
         weightState = weightMeasurement?.weight
         dateState = weightMeasurement?.date ?? Date()
     }

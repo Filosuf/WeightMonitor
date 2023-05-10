@@ -13,17 +13,17 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>f</string>
 			<key>zero</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 			<key>one</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 			<key>two</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 			<key>few</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 			<key>many</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 			<key>other</key>
-			<string>%.1f lb</string>
+			<string>lb</string>
 		</dict>
 	</dict>
 </dict>

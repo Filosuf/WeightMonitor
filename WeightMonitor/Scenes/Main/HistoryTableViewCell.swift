@@ -59,34 +59,33 @@ final class HistoryTableViewCell: UITableViewCell {
     }
 
     private func layout() {
-            [weightLabel,
-             changesLabel,
-             dateLabel,
-             arrowImage
-            ].forEach { view in
-                view.translatesAutoresizingMaskIntoConstraints = false
-                self.addSubview(view)
-            }
-
-            NSLayoutConstraint.activate([
-                weightLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                weightLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-                weightLabel.heightAnchor.constraint(equalToConstant: 18),
-                weightLabel.widthAnchor.constraint(equalToConstant: 116),
-
-                changesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                changesLabel.leadingAnchor.constraint(equalTo: weightLabel.trailingAnchor, constant: 8),
-                changesLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -8),
-
-
-                dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-                dateLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -4),
-                dateLabel.widthAnchor.constraint(equalToConstant: 71),
-
-                arrowImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-                arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-                arrowImage.heightAnchor.constraint(equalToConstant: 20),
-                arrowImage.widthAnchor.constraint(equalToConstant: 20),
-            ])
+        [weightLabel,
+         changesLabel,
+         dateLabel,
+         arrowImage
+        ].forEach { view in
+            view.translatesAutoresizingMaskIntoConstraints = false
+            self.addSubview(view)
         }
+
+        NSLayoutConstraint.activate([
+            weightLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            weightLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            weightLabel.widthAnchor.constraint(equalToConstant: 116),
+
+            changesLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            changesLabel.leadingAnchor.constraint(equalTo: weightLabel.trailingAnchor, constant: 8),
+            changesLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -8),
+
+
+            dateLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            dateLabel.trailingAnchor.constraint(equalTo: arrowImage.leadingAnchor, constant: -4),
+            dateLabel.widthAnchor.constraint(equalToConstant: 71),
+
+            arrowImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            arrowImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            arrowImage.heightAnchor.constraint(equalToConstant: 20),
+            arrowImage.widthAnchor.constraint(equalToConstant: 20),
+        ])
+    }
 }
